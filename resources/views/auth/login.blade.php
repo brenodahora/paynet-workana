@@ -1,38 +1,63 @@
 @extends('layouts.default')
 
-<form name="register" method="POST">
-    @csrf
+@section('title', 'Cadastro - PayNet')
 
-    <label>Nome: </label>
-    <input type="text" name="nome" id="nome" placeholder="Nome completo" required><br><br>
+@section('content')
+    <div class="container m-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card p-4 shadow-lg">
 
-    <label>e-mail: </label>
-    <input type="email" name="email" id="email" required><br><br>
+                    <h2 class="text-center">Login</h2>
 
-    <label>Senha: </label>
-    <input type="password" name="senha" id="senha" ><br><br>
+                    <form name="formLogin" autocomplete="off" class="mt-4">
+                        @csrf
 
-    <label>Confirmar senha: </label>
-    <input type="password" name="confirmacao_senha" id="confirmacao_senha" ><br><br>
+                        <div class="alert alert-danger d-none alertResponse" role="alert"></div>
 
-    <label>CEP: </label>
-    <input type="text" name="cep" id="cep" ><br><br>
-    <label>Rua: </label>
-    <input type="text" name="rua" id="rua" ><br><br>
-    <label>Bairro: </label>
-    <input type="text" name="bairro" id="bairro" ><br><br>
-    <label>Número: </label>
-    <input type="text" name="numero" id="numero" ><br><br>
-    <label>Cidade: </label>
-    <input type="text" name="cidade" id="cidade" ><br><br>
-    <label>Estado: </label>
-    <input type="text" name="estado" id="estado" ><br><br>
+                        <div class="form-group mt-3">
+                            <label for="email">e-mail</label>
+                            <input type="email" name="email" id="email" class="form-control" required>
+                        </div>
 
-    <button type="submit">Cadastrar</button>
-</form>
+                        <div class="form-group mt-3">
+                                <label for="password">Senha</label>
+                                <input type="password" name="password" id="password" class="form-control" required>
+                        </div>
 
-<script>
-    $(function(){
-        $('form[name=""]')
-    });
-</script>
+                        <div class="d-flex justify-content-center mt-3">
+                            <button type="submit" class="btn btn-lg btn-primary btn-block center mt-3">Entrar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function() {
+            $('form[name="formLogin"]').submit(function(event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: "{{ route('api.login') }}",
+                    type: "POST",
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            window.location.href = "{{ route('home') }}";
+                        } else {
+                            $('.alertResponse').removeClass('d-none').html(response.message);
+                        }
+                    },
+                    error: function(response) {
+                        $('.alertResponse').removeClass('d-none').html(response.responseJSON
+                            .message);
+                    },
+                });
+            });
+        });
+    </script>
+@endsection
