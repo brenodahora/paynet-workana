@@ -38,6 +38,37 @@
 
     <script>
         $(function() {
+            $('#zipcode').mask('00000-000');
+
+            $('#zipcode').on('keyup', function() {
+                var cleanedZipcode = $(this).cleanVal();
+
+                if (cleanedZipcode.length === 8) {
+                    $.ajax({
+                        url: "{{ route('api.viacep') }}",
+                        type: 'POST',
+                        data: {
+                            zipcode: cleanedZipcode
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.success) {
+                                $('#street').val(response.address.street);
+                                $('#neighborhood').val(response.address.neighborhood);
+                                $('#city').val(response.address.city);
+                                $('#state').val(response.address.state);
+                            } else {
+                                $('.alertResponse').removeClass('d-none').html(response
+                                    .message);
+                            }
+                        },
+                        error: function(response) {
+                            $('.alertResponse').removeClass('d-none').html(response.responseJSON.message);
+                        },
+                    });
+                }
+            });
+
             $('form[name="formRegister"]').submit(function(event) {
                 event.preventDefault();
 
@@ -48,11 +79,14 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.success == true) {
-                            windows.location.href = "{{ route('home') }}"
+                            window.location.href = "{{ route('home') }}"
                         } else {
                             $('.alertResponse').removeClass('d-none').html(response.message);
                         }
-                    }
+                    },
+                    error: function(response) {
+                        $('.alertResponse').removeClass('d-none').html(response.responseJSON.message);
+                    },
                 });
             });
         });

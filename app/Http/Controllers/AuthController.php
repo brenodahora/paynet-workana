@@ -2,42 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
-use App\Rules\ValidZipCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(CreateUserRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:7'],
-            'password_confirm' => ['required', 'same:password'],
-            'zipcode' => ['required', 'size:8', new ValidZipCode()],
-            'street' => ['required'],
-            'neighborhood' => ['required'],
-            'number' => ['required'],
-            'city' => ['required'],
-            'state' => ['required'],
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Falha na validação dos dados.',
-                'errors' => $validator->errors(),
-            ]);
-        }
-
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
-            'zipcode' => $request->input('zipcode'),
+            'zipcode' => (int) $request->input('zipcode'),
             'street' => $request->input('street'),
             'neighborhood' => $request->input('neighborhood'),
             'number' => $request->input('number'),

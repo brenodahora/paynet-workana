@@ -22,7 +22,8 @@ class ViaCepServiceProvider extends ServiceProvider
         //
     }
 
-    public function zipcodeIsValid(int $zipcode): bool{
+    public function zipcodeIsValid(int $zipcode): bool
+    {
 
         return false;
     }
