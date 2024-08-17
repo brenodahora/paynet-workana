@@ -8,16 +8,13 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class PasswordResetNotification extends Mailable
+class WelcomeNotification extends Mailable
 {
     use Queueable;
     use SerializesModels;
 
     /**
      * Create a new message instance.
-     *
-     * @param  \App\Models\User  $user
-     * @return void
      */
     public function __construct(public $user) {}
 
@@ -27,7 +24,7 @@ class PasswordResetNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Senha Redefinida com Sucesso',
+            subject: 'Bem-vindo(a) a PayNet',
         );
     }
 
@@ -37,7 +34,7 @@ class PasswordResetNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.password_reset_notification',
+            view: 'emails.welcome_notification',
         );
     }
 }

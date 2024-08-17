@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    // Create new users
     public function register(CreateUserRequest $request)
     {
         $user = User::create([
@@ -25,6 +27,8 @@ class AuthController extends Controller
             'state' => $request->input('state'),
         ]);
 
+        event(new UserRegistered($user));
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
         $response = [
@@ -37,19 +41,9 @@ class AuthController extends Controller
         return response()->json($response);
     }
 
-    public function login(Request $request)
+    // Authenticate users
+    public function login(LoginRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'message' => $validator->errors()->first(),
-            ], 422);
-        }
-
         $credentials = $request->only('email', 'password');
 
         if (! Auth::attempt($credentials)) {
@@ -72,6 +66,7 @@ class AuthController extends Controller
         ]);
     }
 
+    // Delete user token
     public function logout(Request $request)
     {
         if ($token = $request->user()->currentAccessToken()) {

@@ -27,9 +27,6 @@ class Playground extends Command
      */
     public function handle(ViaCepService $viaCep)
     {
-        // dd($viaCep->zipCode()->getAddressByZipCode('68455742'));
-        // $users = User::factory()->count(5)->create();
-
-        // dd(ViaCep::zipCode()->getAddressByZipCode('68455742'));
+        // User::factory()->count(5)->create();
     }
 }

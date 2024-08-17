@@ -7,6 +7,9 @@ namespace App\Services\ViaCep\Endpoints;
 use App\Services\ViaCep\ViaCepService;
 use Illuminate\Support\Collection;
 
+/**
+ * Structure base endpoint and transform data received
+ */
 class BaseEndpoint
 {
     protected ViaCepService $service;

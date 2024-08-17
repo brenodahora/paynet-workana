@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 
 class PasswordController
 {
+    // Send password email reset to user
     public function passwordEmail(ResetUserPasswordRequest $request)
     {
         $response = Password::sendResetLink($request->only('email'));
@@ -33,6 +34,7 @@ class PasswordController
         }
     }
 
+    // Update user password
     public function updatePassword(UpdatePasswordRequest $request)
     {
         $status = Password::reset(

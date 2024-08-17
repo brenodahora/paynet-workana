@@ -8,6 +8,9 @@ use App\Services\ViaCep\Concerns\HasZipCodes;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 
+/**
+ * ViaCep Service API
+ */
 class ViaCepService
 {
     use HasZipCodes;

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    // Get list of users per page
     public function getPerPage(Request $request)
     {
         $page = $request->query('page', 1);

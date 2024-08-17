@@ -8,8 +8,9 @@ use App\Services\ViaCep\ViaCepService;
 
 class ViaCepController extends Controller
 {
-    public function __construct(public ViaCepService $viaCep) {}
+    public ViaCepService $viaCep;
 
+    // Get address info by zipcode
     public function getAddress(ViaCepRequest $request)
     {
         $address = $this->viaCep->zipCode()->getAddressByZipCode($request->input('zipcode'));

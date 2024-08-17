@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 
 class ZipCodes extends BaseEndpoint
 {
+    // Get address by zipcode
     public function getAddressByZipCode(string $zipCode): Collection|bool
     {
         $response = $this->service->http->get($zipCode.'/json');
