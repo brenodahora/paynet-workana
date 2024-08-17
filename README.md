@@ -6,7 +6,7 @@
 - Clone o projeto em sua máquina local.
 - Instale as dependências do projeto com o comando `npm install`, `npm run build` e em seguida `composer install`.
 - Configure o arquivo `.env` com as informações de banco de dados, se preferir pode usar o `.env.exemple`.
-- Também é necessário incluir os dados de acesso ao seu servidor de email no arquivo `.env`.
+- Também é necessário incluir os dados de acesso ao seu servidor de email, banco de dados e cache no arquivo `.env`.
 - Execute o comando `php artisan key:generate` para gerar a chave de aplicação.
 - Execute o comando `php artisan migrate --seed` para criar as tabelas no banco de dados com exemplos de usuários já criados.
 - Execute o comando `php artisan serve` para iniciar o servidor do Laravel.
