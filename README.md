@@ -1,5 +1,5 @@
 ## Sobre este projeto
-- Este projeto foi desenvolvido para o teste técnico da empresa PayNet, via Workana. O objetivo desse teste é criar uma página de cadastro, login, recuperação de senha e home. Além de autenticar via API com Sanctum, consultar uma API de cep e enviar notificações via e-mail para usuários.
+- Este projeto foi desenvolvido para o teste técnico da empresa PayNet, via Workana. O objetivo desse teste é criar uma página de cadastro, login, recuperação de senha e home. Além de autenticar via API com Sanctum e AJAX, consultar uma API de cep e enviar notificações via e-mail para usuários.
 
 ## Guia de instalação e teste do projeto
 - Para instalar o projeto, você precisará ter o básico para um projeto Laravel em seu computador.
@@ -10,7 +10,7 @@
 - Execute o comando `php artisan key:generate` para gerar a chave de aplicação.
 - Execute o comando `php artisan migrate --seed` para criar as tabelas no banco de dados com exemplos de usuários já criados.
 - Execute o comando `php artisan serve` para iniciar o servidor do Laravel.
-- Acesse a página do projeto em `http://localhost:3000`.
+- Acesse a página do projeto em `http://localhost:8000`.
 - Para testar a página de cadastro, login, recuperação de senha e home, acesse as seguintes rotas:
 - Cadastro: `http://localhost:8000/cadastro`
 - Login: `http://localhost:8000/login`
