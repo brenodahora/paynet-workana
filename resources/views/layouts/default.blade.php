@@ -18,7 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    
     <style>
         html,
         body {
@@ -55,12 +55,27 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}"><i class="fa-solid fa-house"></i></a>
                     </li>
+                  
+                    @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Entrar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('register') }}">Registrar</a>
                     </li>
+                    @endguest
+    
+                    @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                           Sair
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                    @endauth
                 </ul>
             </div>
         </div>

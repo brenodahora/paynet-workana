@@ -21,8 +21,8 @@
                         </div>
 
                         <div class="form-group mt-3">
-                                <label for="password">Senha</label>
-                                <input type="password" name="password" id="password" class="form-control" required>
+                            <label for="password">Senha</label>
+                            <input type="password" name="password" id="password" class="form-control" required>
                         </div>
 
                         <div class="d-flex justify-content-center mt-3">
@@ -47,6 +47,7 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.success) {
+                            localStorage.setItem('auth_token', response.token);
                             window.location.href = "{{ route('home') }}";
                         } else {
                             $('.alertResponse').removeClass('d-none').html(response.message);
