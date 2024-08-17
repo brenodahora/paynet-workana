@@ -26,6 +26,7 @@
     </div>
 
     <script>
+        // Se o usuário possuir um token no local storage, então fazer tentativa de busca de usuários, se falhar, então logar
         $(document).ready(function() {
             const token = localStorage.getItem('auth_token');
 

@@ -10,6 +10,11 @@ class ViaCepController extends Controller
 {
     public ViaCepService $viaCep;
 
+    public function __construct(ViaCepService $viaCep)
+    {
+        $this->viaCep = $viaCep;
+    }
+
     // Get address info by zipcode
     public function getAddress(ViaCepRequest $request)
     {
