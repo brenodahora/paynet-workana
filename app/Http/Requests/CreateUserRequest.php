@@ -27,12 +27,20 @@ class CreateUserRequest extends FormRequest
             'email' => ['required', 'email', 'unique:users', 'max:255'],
             'password' => ['required', 'min:7', 'max:255'],
             'password_confirm' => ['required', 'same:password', 'max:255'],
-            'zipcode' => ['required', 'regex:/^[0-9]{5}-?[0-9]{3}$/', new ValidZipCode],
+            'zipcode' => ['required', 'digits:8', new ValidZipCode],
             'street' => ['required', 'max:255'],
             'neighborhood' => ['required', 'max:255'],
             'number' => ['required', 'max:255'],
             'city' => ['required', 'max:255'],
             'state' => ['required', 'max:255'],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        // Remove hífen do CEP
+        $this->merge([
+            'zipcode' => str_replace('-', '', $this->input('zipcode')),
+        ]);
     }
 }

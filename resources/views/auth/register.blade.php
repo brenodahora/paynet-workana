@@ -137,6 +137,7 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.success) {
+                            localStorage.setItem('auth_token', response.token);
                             window.location.href = "{{ route('home') }}";
                         } else {
                             $('.alertResponse').removeClass('d-none').html(response.message);

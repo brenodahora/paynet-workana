@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('zipcode')->nullable();
+            $table->string('zipcode', 8)->nullable();
             $table->string('street')->nullable();
             $table->string('neighborhood')->nullable();
-            $table->integer('number')->nullable();
+            $table->string('number')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->rememberToken();
