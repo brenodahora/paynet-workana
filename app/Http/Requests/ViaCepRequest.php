@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\ValidZipCode;
+use App\Services\ViaCep\ViaCepService;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ViaCepRequest extends FormRequest
@@ -23,7 +24,7 @@ class ViaCepRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'zipcode' => ['required', 'regex:/^[0-9]{5}-?[0-9]{3}$/', new ValidZipCode],
+            'zipcode' => ['required', 'regex:/^[0-9]{5}-?[0-9]{3}$/', new ValidZipCode(app(ViaCepService::class))],
         ];
     }
 }

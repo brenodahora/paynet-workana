@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\ViaCep\ViaCepService;
 use Illuminate\Support\ServiceProvider;
 
 class ViaCepServiceProvider extends ServiceProvider
@@ -11,7 +12,9 @@ class ViaCepServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(ViaCepService::class, function ($app) {
+            return new ViaCepService;
+        });
     }
 
     /**
@@ -20,11 +23,5 @@ class ViaCepServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
-    }
-
-    public function zipcodeIsValid(int $zipcode): bool
-    {
-
-        return false;
     }
 }

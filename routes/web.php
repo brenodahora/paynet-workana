@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\PasswordController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'login');
@@ -27,7 +27,7 @@ Route::get('/forgot-password', function () {
 
 Route::post(
     '/forgot-password',
-    [AuthController::class, 'passwordEmail']
+    [PasswordController::class, 'passwordEmail']
 )->name('password.email');
 
 Route::get('/reset-password/{token}', function (string $token) {
@@ -36,5 +36,5 @@ Route::get('/reset-password/{token}', function (string $token) {
 
 Route::post(
     '/reset-password',
-    [AuthController::class, 'updatePassword']
+    [PasswordController::class, 'updatePassword']
 )->name('password.update');

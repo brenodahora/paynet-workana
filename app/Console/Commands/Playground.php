@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
-use App\Services\ViaCep\Facades\ViaCep;
+use App\Services\ViaCep\ViaCepService;
 use Illuminate\Console\Command;
 
 class Playground extends Command
@@ -25,9 +25,11 @@ class Playground extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(ViaCepService $viaCep)
     {
-        $users = User::factory()->count(5)->create();
+        // dd($viaCep->zipCode()->getAddressByZipCode('68455742'));
+        // $users = User::factory()->count(5)->create();
+
         // dd(ViaCep::zipCode()->getAddressByZipCode('68455742'));
     }
 }

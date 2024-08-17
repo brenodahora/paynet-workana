@@ -2,12 +2,14 @@
 
 namespace App\Rules;
 
+use App\Services\ViaCep\ViaCepService;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
-use Illuminate\Support\Facades\Http;
 
 class ValidZipCode implements ValidationRule
 {
+    public function __construct(protected ViaCepService $viaCepService) {}
+
     /**
      * Run the validation rule.
      *
@@ -15,10 +17,9 @@ class ValidZipCode implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $response = Http::get("https://viacep.com.br/ws/{$value}/json/");
+        $response = $this->viaCepService->zipCode()->getAddressByZipCode($value);
 
-        // Verifica se o CEP é válido
-        if ($response->status() !== 200 || isset($response->json()['erro'])) {
+        if (! $response) {
             $fail("O {$attribute} não é um CEP válido.");
         }
     }
