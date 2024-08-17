@@ -23,7 +23,7 @@ class ViaCepRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'zipcode' => ['required', 'regex:/^[0-9]{5}-?[0-9]{3}$/', new ValidZipCode()],
+            'zipcode' => ['required', 'regex:/^[0-9]{5}-?[0-9]{3}$/', new ValidZipCode],
         ];
     }
 }

@@ -27,7 +27,7 @@ class CreateUserRequest extends FormRequest
             'email' => ['required', 'email', 'unique:users', 'max:255'],
             'password' => ['required', 'min:7', 'max:255'],
             'password_confirm' => ['required', 'same:password', 'max:255'],
-            'zipcode' => ['required', 'regex:/^[0-9]{5}-?[0-9]{3}$/', new ValidZipCode()],
+            'zipcode' => ['required', 'regex:/^[0-9]{5}-?[0-9]{3}$/', new ValidZipCode],
             'street' => ['required', 'max:255'],
             'neighborhood' => ['required', 'max:255'],
             'number' => ['required', 'max:255'],

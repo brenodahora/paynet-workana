@@ -13,7 +13,7 @@ class BaseEndpoint
 
     public function __construct()
     {
-        $this->service = new ViaCepService();
+        $this->service = new ViaCepService;
     }
 
     protected function transform(mixed $json, $entity): Collection

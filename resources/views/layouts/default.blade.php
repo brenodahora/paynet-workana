@@ -53,10 +53,6 @@
             </button>
             <div class="navbar-collapse collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}"><i class="fa-solid fa-house"></i></a>
-                    </li>
-
                     <li class="nav-item" id="nav-login">
                         <a class="nav-link" href="{{ route('login') }}">Entrar</a>
                     </li>

@@ -10,6 +10,6 @@ trait HasZipCodes
 {
     public function zipCode()
     {
-        return new ZipCodes();
+        return new ZipCodes;
     }
 }

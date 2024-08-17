@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\ViaCepController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ViaCepController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -10,7 +10,7 @@ Route::get('/user', function (Request $request) {
     if ($request->user()) {
         return response()->json(['authenticated' => true], 200);
     }
-    
+
     return response()->json(['authenticated' => false], 401);
 })->name('api.user')->middleware('auth:sanctum');
 
