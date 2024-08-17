@@ -18,14 +18,14 @@
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="form-group mt-3">
-                            <label for="email">e-mail</label>
+                            <label for="email">E-mail</label>
                             <input type="email" name="email" id="email" class="form-control" required>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mt-3 pb-2">
                                 <div data-mdb-input-init class="form-outline">
-                                    <label for="password">Senha</label>
+                                    <label for="password">Nova senha</label>
                                     <input type="password" name="password" id="password" class="form-control" required>
                                 </div>
                             </div>

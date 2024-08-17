@@ -17,24 +17,24 @@ Route::get('/logout', function () {
     return view('auth.login');
 })->name('logout');
 
-Route::get('/register', function () {
+Route::get('/cadastro', function () {
     return view('auth.register');
 })->name('register');
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
-})->middleware('guest')->name('password.request');
+})->name('password.request');
 
 Route::post(
     '/forgot-password',
     [AuthController::class, 'passwordEmail']
-)->middleware('guest')->name('password.email');
+)->name('password.email');
 
 Route::get('/reset-password/{token}', function (string $token) {
     return view('auth.reset-password', ['token' => $token]);
-})->middleware('guest')->name('password.reset');
+})->name('password.reset');
 
 Route::post(
     '/reset-password',
     [AuthController::class, 'updatePassword']
-)->middleware('guest')->name('password.update');
+)->name('password.update');

@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="d-flex justify-content-center mt-3">
-                        <button type="submit" class="btn btn-lg btn-primary btn-block center mt-3">Enviar Link de Redefinição</button>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block center mt-3">Enviar Link</button>
                     </div>
 
                     <div class="text-center mt-2">

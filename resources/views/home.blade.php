@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-5">
-        <h2 class="mb-4 text-center">Lista de Usuários</h2>
+        <h2 class="mb-4 text-center">Lista de Usuários Cadastrados</h2>
         <div class="table-responsive">
             <table class="table-striped table-bordered table">
                 <thead class="thead-dark">

@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="form-group mt-3">
-                            <label for="email">e-mail</label>
+                            <label for="email">E-mail</label>
                             <input type="email" name="email" id="email" class="form-control" required>
                         </div>
 
@@ -47,7 +47,7 @@
                             <div class="col-6">
                                 <div class="form-group mt-3">
                                     <label for="zipcode">CEP</label>
-                                    <input type="text" name="zipcode" id="zipcode" class="form-control" required>
+                                    <input type="text" name="zipcode" id="zipcode" class="form-control" placeholder="00000-000" required>
                                 </div>
                             </div>
                             <div class="col-3">

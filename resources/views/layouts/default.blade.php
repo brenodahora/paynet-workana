@@ -10,9 +10,9 @@
 
     <title>@yield('title', 'Laravel - PayNet')</title>
 
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="js/default.js"></script>
+    <script src="{{ asset('js/default.js') }}"></script>
     <script src="https://unpkg.com/@popperjs/core@2.11.8/dist/umd/popper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
