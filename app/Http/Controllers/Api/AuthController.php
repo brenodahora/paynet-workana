@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\ResetUserPasswordRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -59,7 +61,10 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
+
         $token = $user->createToken('Personal Access Token')->plainTextToken;
+
+        Auth::login($user, $remember = true);
 
         return response()->json([
             'success' => true,
@@ -78,12 +83,24 @@ class AuthController extends Controller
         return response()->json(['message' => 'Logout bem-sucedido.'], 200);
     }
 
-    public function passwordRecovery(Request $request)
+    public function passwordEmail(ResetUserPasswordRequest $request)
     {
-        $data = $request->validate([
-            'email' => ['required', 'email', 'exists:users'],
-        ]);
+        $response = Password::sendResetLink($request->only('email'));
 
-        $user = User::where('email', $data['email'])->first();
+        switch ($response) {
+            case Password::RESET_LINK_SENT:
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Um link de redefinição de senha foi enviado para o seu e-mail.',
+                ]);
+
+            case Password::INVALID_USER:
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Nenhum usuário encontrado com esse e-mail.',
+                ]);
+        }
     }
+
+    public function resetPassword(Request $request) {}
 }

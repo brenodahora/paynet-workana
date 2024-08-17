@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'zipcode' => (string) $this->faker->numberBetween(10000000, 99999999),
             'street' => fake()->name(),
             'neighborhood' => fake()->name(),
-            'number' => (string) fake()->numberBetween(),
+            'number' => (string) fake()->numberBetween(1, 999),
             'city' => fake()->name(),
             'state' => fake()->name(),
             'remember_token' => Str::random(10),

@@ -21,6 +21,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('api.login');
 Route::post('/viacep', [ViaCepController::class, 'getAddress'])->name('api.viacep');
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/users', [UserController::class, 'getAll'])->name('api.users');
+    Route::get('/users', [UserController::class, 'getPerPage'])->name('api.users');
     Route::post('/logout', [AuthController::class, 'logout'])->name('api.logout');
 });

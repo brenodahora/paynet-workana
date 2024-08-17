@@ -4,11 +4,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function getAll()
+    public function getPerPage(Request $request)
     {
-        return response()->json(User::all());
+        $page = $request->query('page', 1);
+        $perPage = 10;
+
+        $users = User::orderBy('name', 'asc')->paginate($perPage, ['*'], 'page', $page);
+
+        return response()->json($users);
     }
 }

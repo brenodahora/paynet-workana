@@ -29,6 +29,10 @@
                             <button type="submit" class="btn btn-lg btn-primary btn-block center mt-3">Entrar</button>
                         </div>
 
+                        <div class="text-left">
+                            <a href="{{ route('password.request') }}" class="btn btn-link">Esqueceu sua senha?</a>
+                        </div>
+
                     </form>
                 </div>
             </div>
