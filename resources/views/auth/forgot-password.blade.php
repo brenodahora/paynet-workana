@@ -53,7 +53,7 @@
                     }
                 },
                 error: function(xhr) {
-                    $('.alertResponse').removeClass('d-none alert-success').addClass('alert-danger').html('Ocorreu um erro ao enviar a solicitação.');
+                    $('.alertResponse').removeClass('d-none alert-success').addClass('alert-danger').html('Ocorreu um erro ao enviar a solicitação. Verifique o e-mail informado.');
                 }
             });
         });

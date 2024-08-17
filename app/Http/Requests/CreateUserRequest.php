@@ -26,8 +26,7 @@ class CreateUserRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:users', 'max:255'],
-            'password' => ['required', 'min:7', 'max:255'],
-            'password_confirmation' => ['required', 'same:password', 'max:255'],
+            'password' => ['required', 'min:6', 'max:255', 'confirmed'],
             'zipcode' => ['required', 'digits:8', new ValidZipCode(app(ViaCepService::class))],
             'street' => ['required', 'max:255'],
             'neighborhood' => ['required', 'max:255'],

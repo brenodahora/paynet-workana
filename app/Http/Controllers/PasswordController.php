@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ResetUserPasswordRequest;
+use App\Http\Requests\UpdatePasswordRequest;
+use App\Mail\PasswordResetNotification;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 
@@ -31,14 +33,8 @@ class PasswordController
         }
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(UpdatePasswordRequest $request)
     {
-        $request->validate([
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:8|confirmed',
-        ]);
-
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function (User $user, string $password) {
@@ -47,6 +43,8 @@ class PasswordController
                 ])->setRememberToken(Str::random(60));
 
                 $user->save();
+
+                Mail::to($user->email)->send(new PasswordResetNotification($user));
 
                 event(new PasswordReset($user));
             }

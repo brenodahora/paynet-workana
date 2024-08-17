@@ -55,6 +55,7 @@
 
                         if (confirmLogout) {
                             localStorage.removeItem('auth_token');
+                            window.location.href = "{{ route('login') }}"
                         } else {
                             window.location.href = "{{ route('home') }}";
                         }
