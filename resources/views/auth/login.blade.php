@@ -36,7 +36,32 @@
     </div>
 
     <script>
+        $(document).ready(function() {
+            const token = localStorage.getItem('auth_token');
+    
+            if (token) {
+                $.ajax({
+                    url: "{{ route('api.user') }}", // Ou uma rota de validação de token
+                    type: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    },
+                    success: function(userData) {
+                        // Token é válido, redirecionar para a home
+                        alert('Token válido!');
+                    },
+                    error: function(xhr) {
+                        // Token inválido ou expirado, não faz nada e deixa o usuário na página de login
+                        console.error('Token inválido ou expirado:', xhr.responseText);
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
         $(function() {
+
             $('form[name="formLogin"]').submit(function(event) {
                 event.preventDefault();
 

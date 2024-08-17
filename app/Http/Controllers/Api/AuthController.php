@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -39,35 +40,42 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => ['required', 'email', 'exists:users'],
-            'password' => ['required', 'min:7'],
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
-                'message' => 'Falha na validação dos dados.',
-                'errors' => $validator->errors(),
-            ]);
+                'message' => $validator->errors()->first()
+            ], 422);
         }
 
-        $user = User::where('email', $request->input('email'))->first();
+        $credentials = $request->only('email', 'password');
 
-        if (! $user || ! Hash::check($request->input('password'), $user->password)) {
+        if (!Auth::attempt($credentials)) {
             return response()->json([
-                'success' => false,
-                'message' => 'Usuário informado não existe ou senha incorreta.',
-            ]);
+                'message' => 'Credenciais inválidas.'
+            ], 401);
         }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $user = Auth::user();
+        $token = $user->createToken('Personal Access Token')->plainTextToken;
 
         return response()->json([
             'success' => true,
-            'message' => 'Login efetuado!',
+            'message' => 'Novo usuário criado!',
             'user' => $user,
             'token' => $token,
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        if ($token = $request->user()->currentAccessToken()) {
+            $token->delete();
+        }
+
+        return response()->json(['message' => 'Logout bem-sucedido.'], 200);
     }
 
     public function passwordRecovery(Request $request)
