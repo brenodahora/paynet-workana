@@ -1,5 +1,7 @@
 @extends('layouts.default')
 
+@section('title', 'Recuperar senha - PayNet')
+
 @section('content')
 <div class="container m-5">
     <div class="row justify-content-center">

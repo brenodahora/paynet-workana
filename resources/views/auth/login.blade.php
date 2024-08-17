@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Cadastro - PayNet')
+@section('title', 'Entrar - PayNet')
 
 @section('content')
     <div class="container m-5">

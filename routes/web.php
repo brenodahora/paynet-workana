@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', 'home');
+Route::redirect('/', 'login');
 
 Route::get('/home', function () {
     return view('home');
@@ -33,3 +33,8 @@ Route::post(
 Route::get('/reset-password/{token}', function (string $token) {
     return view('auth.reset-password', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
+
+Route::post(
+    '/reset-password',
+    [AuthController::class, 'updatePassword']
+)->middleware('guest')->name('password.update');

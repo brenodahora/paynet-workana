@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Passwords\CanResetPassword as HasResetPassword;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,7 +12,6 @@ class User extends Authenticatable implements CanResetPassword
 {
     use HasApiTokens;
     use HasFactory;
-    use HasResetPassword;
     use Notifiable;
 
     /**

@@ -36,8 +36,8 @@
 
                             <div class="col-md-6 mt-3 pb-2">
                                 <div data-mdb-input-init class="form-outline">
-                                    <label for="password_confirm">Confirmar senha</label>
-                                    <input type="password" name="password_confirm" id="password_confirm"
+                                    <label for="password_confirmation">Confirmar senha</label>
+                                    <input type="password" name="password_confirmation" id="password_confirmation"
                                         class="form-control" required>
                                 </div>
                             </div>
